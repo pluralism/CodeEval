@@ -39,11 +39,11 @@ def calculate(root, a, b)
 	left = calculate(root.left, a, b)
 	right = calculate(root.right, a, b)
 	
-	if left.nil? == false && right.nil? == false
+	if !left.nil? && !right.nil?
 		return root
 	end
 	
-	if left.nil? == false
+	if !left.nil?
 		left
 	else
 		right
