@@ -2,11 +2,28 @@
 
 
 NSString* getDistribution(NSString *line) {
-    NSString *tmp;
-    int tmpInt = [tmp intValue];
-   
+    int tmpInt = [line intValue];
     
-    return tmp;
+    if(tmpInt < 0 || tmpInt > 100)
+        return @"This program is for humans";
+    else if(tmpInt >= 66)
+        return @"Retirement";
+    else if(tmpInt >= 23)
+        return @"Work";
+    else if(tmpInt >= 19)
+        return @"College";
+    else if(tmpInt >= 15)
+        return @"High school";
+    else if(tmpInt >= 12)
+        return @"Middle school";
+    else if(tmpInt >= 5)
+        return @"Elementary school";
+    else if(tmpInt >= 3)
+        return @"Preschool";
+    else if(tmpInt >= 0)
+        return @"Home";
+    
+    return nil;
 }
 
 
@@ -17,6 +34,11 @@ int main(int argc, const char * argv[])
         NSString *filename = [NSString stringWithCString:argv[1] encoding:NSASCIIStringEncoding];
         NSString *content = [NSString stringWithContentsOfFile:filename encoding:NSASCIIStringEncoding error:nil];
         NSArray *lines = [content componentsSeparatedByString:@"\n"];
+        
+        for(NSString *line in lines) {
+            NSString *tmp = getDistribution(line);
+            NSLog(@"%@", tmp);
+        }
     }
     return 0;
 }
